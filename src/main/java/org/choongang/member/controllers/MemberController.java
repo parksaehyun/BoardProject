@@ -61,4 +61,11 @@ public class MemberController {
 
         return "commons/execute_script"; // 스크립트는 html 스크립트 캐그 안에서만 실행가능 = html페이지가 랜더링되야 스크립트 실행이 가능
     }
+
+    @RequestMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate(); // 세션 비우기 : 로그 아웃
+
+        return "redirect:/member/login"; // 페이지 이동 response.sendRedirect(...)
+    }
 }
