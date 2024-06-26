@@ -8,6 +8,7 @@ import org.choongang.global.config.annotations.GetMapping;
 import org.choongang.global.config.annotations.PostMapping;
 import org.choongang.global.config.annotations.RequestMapping;
 import org.choongang.member.services.JoinService;
+import org.choongang.member.services.LoginService;
 
 @Controller
 @RequestMapping("/member")
@@ -15,6 +16,7 @@ import org.choongang.member.services.JoinService;
 public class MemberController {
 
     private final JoinService joinService;
+    private final LoginService loginService;
 
     // 회원 가입 양식
     @GetMapping("/join")
@@ -46,8 +48,17 @@ public class MemberController {
 
     // 로그인 처리
     @PostMapping("/login")
-    public String loginPs(RequestLogin form) {
+    public String loginPs(RequestLogin form, HttpServletRequest request) {
 
-        return null;
+        loginService.process(form);
+
+        String redirectUrl = form.getRedirectUrl();
+        redirectUrl = redirectUrl == null || redirectUrl.isBlank() ? "/" : redirectUrl;
+
+        String script = String.format("parent.location.replace('%s');", request.getContextPath() + redirectUrl);
+
+        request.setAttribute("script", script);
+
+        return "commons/execute_script"; // 스크립트는 html 스크립트 캐그 안에서만 실행가능 = html페이지가 랜더링되야 스크립트 실행이 가능
     }
 }
