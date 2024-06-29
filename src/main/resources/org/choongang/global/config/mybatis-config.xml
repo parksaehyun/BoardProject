@@ -5,7 +5,7 @@
 <configuration>
     <properties>
         <property name="driver" value="oracle.jdbc.driver.OracleDriver" />
-        <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
+        <property name="url" value="jdbc:oracle:thin:@localhost:1521:ORCL" />
         <property name="username" value="PROJECT3" />
         <property name="password" value="oracle" />
         <property name="prodUrl" value="jdbc:oracle:thin:@localhost:1521:XE" />
@@ -14,6 +14,7 @@
     </properties>
     <typeHandlers>
         <typeHandler handler="org.apache.ibatis.type.EnumTypeHandler" javaType="org.choongang.member.constants.UserType" />
+        <typeHandler handler="org.apache.ibatis.type.EnumTypeHandler" javaType="org.choongang.board.constants.Authority" />
     </typeHandlers>
     <environments default="dev">
         <environment id="dev">
@@ -37,5 +38,7 @@
     </environments>
     <mappers>
         <mapper resource="org/choongang/member/mappers/MemberMapper.xml"/>
+        <mapper resource="org/choongang/board/mappers/BoardMapper.xml" />
+        <mapper resource="org/choongang/board/mappers/BoardDataMapper.xml" />
     </mappers>
 </configuration>

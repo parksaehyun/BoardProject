@@ -52,7 +52,6 @@ public class BeanContainer {
                  *      - HttpServletRequest
                  *      - HttpServletResponse
                  *      - HttpSession session
-                 *      - Mybatis mapper 구현 객체
                  */
 
                 if (beans.containsKey(key)) {
@@ -129,6 +128,7 @@ public class BeanContainer {
     private List<Object> resolveDependencies(String key, Constructor con) throws Exception {
         List<Object> dependencies = new ArrayList<>();
         if (beans.containsKey(key)) {
+            updateObject(beans.get(key));
             dependencies.add(beans.get(key));
             return dependencies;
         }
@@ -213,7 +213,7 @@ public class BeanContainer {
      *
      * @param bean
      */
-    private void updateObject(Object bean) {
+    private void updateObject(Object bean) throws Exception {
         // 인터페이스인 경우 갱신 배제
         if (bean.getClass().isInterface()) {
             return;
@@ -243,9 +243,8 @@ public class BeanContainer {
                     field.set(bean, getBean(HttpServletResponse.class));
                 } else if (clz == HttpSession.class) {
                     field.set(bean, getBean(HttpSession.class));
-                } else if (mapper != null) { // 마이바티스 매퍼
-                    field.set(bean, mapper);
                 }
+
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }

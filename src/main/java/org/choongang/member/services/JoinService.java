@@ -18,12 +18,11 @@ public class JoinService {
     private final MemberMapper mapper;
 
     public void process(RequestJoin form) {
-        // 요청데이터를 가지고 처리
         validator.check(form);
 
-        // 비밀번호 해시화
-        String hash = BCrypt.hashpw(form.getPassword(), BCrypt.gensalt(12)); // 기본 10번 반복, 반복횟수가 많을수록 보안성 높고 성능은 떨어지게 된다
 
+        // 비밀번호 해시화
+        String hash = BCrypt.hashpw(form.getPassword(), BCrypt.gensalt(12));
 
         // DB에 영구 저장 처리
         Member member = Member.builder()

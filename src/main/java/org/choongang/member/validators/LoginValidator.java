@@ -30,7 +30,7 @@ public class LoginValidator implements Validator<RequestLogin>, RequiredValidato
 
         // 가입된 회원인지 체크
         String message = "이메일 또는 비밀번호가 일치하지 않습니다.";
-        Member member = mapper.getMember(email);
+        Member member = mapper.get(email);
         checkTrue(member != null, new AlertException(message, status));
 
         // 비밀번호 일치 여부 체크

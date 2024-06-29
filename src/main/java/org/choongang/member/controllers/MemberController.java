@@ -32,11 +32,11 @@ public class MemberController {
         joinService.process(form);
 
         String url = request.getContextPath() + "/member/login";
-        String script = String.format("parent.location.replace('%s')", url);
+        String script = String.format("parent.location.replace('%s');", url);
 
         request.setAttribute("script", script);
 
-        return "commons/execute_script"; // 회원가입 후 로그인페이지 이동
+        return "commons/execute_script";
     }
 
     // 로그인 양식
@@ -59,7 +59,7 @@ public class MemberController {
 
         request.setAttribute("script", script);
 
-        return "commons/execute_script"; // 스크립트는 html 스크립트 캐그 안에서만 실행가능 = html페이지가 랜더링되야 스크립트 실행이 가능
+        return "commons/execute_script";
     }
 
     @RequestMapping("/logout")

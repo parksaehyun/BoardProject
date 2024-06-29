@@ -18,8 +18,8 @@
 .content-box h1 {
     font-size: 1.5rem;
     line-height: 1;
-    padding: 0 0 15px;
-    margin: 0 0 20px;
+    padding: 0 10px 15px;
+    margin 0 0 20px;
     border-bottom: 2px solid #000;
 }
 
@@ -94,8 +94,8 @@ nav {
 }
 
 nav > .inner {
-    height: 45px;
     display: flex;
+    height: 45px;
 }
 
 nav > .inner a {
@@ -106,7 +106,7 @@ nav > .inner a {
 }
 
 nav > .inner a:hover {
-    background: #566839;
+    background: #414141;
 }
 /* 사이트 헤더 영역 E */
 
@@ -118,4 +118,3 @@ footer {
     border-top: 1px solid #ccc;
 }
 /* 사이트 푸터 영역 E */
-
